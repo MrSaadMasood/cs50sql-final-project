@@ -1,5 +1,4 @@
-```meraid
-erDiagram
+```mermaid erDiagram
     
     PRODUCT }|--o{ SUPPLIER : has
     PRODUCT {
