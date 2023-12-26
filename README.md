@@ -1,3 +1,4 @@
+```meraid
 erDiagram
     
     PRODUCT }|--o{ SUPPLIER : has
