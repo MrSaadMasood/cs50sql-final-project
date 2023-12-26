@@ -1,4 +1,4 @@
-erDiagram
+```erDiagram
 PRODUCT }|--o{ SUPPLIER : has
 
 PRODUCT {
@@ -73,3 +73,4 @@ EXPLOYEES{
     contact int
     role string
 }
+```
