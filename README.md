@@ -1,7 +1,5 @@
 ```mermaid
 erDiagram
-PRODUCT }|--o{ SUPPLIER : has
-
 PRODUCT {
     id int PK
     tradeName string
@@ -11,9 +9,8 @@ PRODUCT {
     packingType string
     manufacturer string
     SKU int
-    unitPrice int
 }
-
+PRODUCT }o--o{ STOCK : in
 STOCK ||--o{ SUPPLIER : has
     STOCK {
         id int PK
@@ -33,13 +30,14 @@ SUPPLIER{
     contact int
 
 }
-
+SUPPLIER ||--o{ SUPPLIED : has
+PRODUCT }o--|{ SUPPLIED : is
 SUPPLIED{
     supplierID int FK
     productID int FK
 }
 
-PRODUCT }o--|{ ORDER : has
+ORDER }|--o{ PRODUCT : has
 ORDER{
     id int PK
     orderDate date
@@ -50,7 +48,7 @@ PRODUCT }|--|{ CUSTOMERS : has
 CUSTOMERS{
     id int PK
     name string
-    conact int
+    contact int
 }
 PRODUCT }o--|{ SALES : has
 SALES{
@@ -60,8 +58,8 @@ SALES{
     totalSale real
     saleDate date
 }
-PRODUCT }|--|{CATAGORY : has
-CATAGORY{
+PRODUCT }|--|{CATEGORY : has
+CATEGORY{
     id  int PK
     productID int FK
     type string
