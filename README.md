@@ -5,7 +5,7 @@ PRODUCT {
     tradeName string
     activeIngredient string
     composition string
-    packingSize string
+    packingSize int
     packingType string
     manufacturer string
     SKU int
@@ -19,8 +19,8 @@ STOCK ||--o{ SUPPLIER : has
         stockPacks real
         ProfitPerPackSold real
         unitPrice real
-        expirationDate date
         arrivalDate date
+        expirationDate date
 
     }
 
@@ -58,24 +58,29 @@ SALES{
     totalSale real
     saleDate date
 }
-PRODUCT }|--|{CATEGORY : has
-CATEGORY{
+PRODUCT}|--|{AVAILABLE_CATAGORY : in
+AVAILABLE_CATAGORY{
+    id int PK
+    name string
+}
+AVAILABLE_CATAGORY }|--|{CATAGORIZED : by
+CATAGORIZED{
     id  int PK
     productID int FK
-    type string
 }
 EMPLOYEES }o--o{ PRODUCT : handles
 EMPLOYEES{
     id int PK
-    role string
     firstName string
     secondName string
     contact int
+    role string
+
 }
 EMPLOYEES }|-- o{ AUDIT_TRAIL : induce
 AUDIT_TRAIL {
-    dateTime date
-    userID int FK
+    dateOfChange date
+    employeeID int FK
     changeType string
     changedTableID int FK
     columnChanged string
