@@ -45,7 +45,7 @@ SUPPLIED{
     productID int FK
 }
 
-ORDER }|--o{ PRODUCT : has
+ORDER }|--o{ PRODUCT : includes
 ORDER{
     id int PK
     orderDate date
@@ -78,7 +78,7 @@ CATEGORIZED{
     CatagoryID  int FK
     productID int FK
 }
-EMPLOYEES }o--o{ PRODUCT : handles
+EMPLOYEES }o--o{ PRODUCT : manages
 EMPLOYEES{
     id int PK
     firstName string
@@ -92,7 +92,7 @@ AUDIT_TRAIL {
     dateOfChange date
     employeeID int FK
     changeType string
-    changedTableName int FK
+    changedTableName string
     columnChanged string
     oldValue string
     newValue string
