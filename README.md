@@ -38,15 +38,15 @@ SUPPLIER{
     accountBalance int
 
 }
-SUPPLIER ||--o{ SUPPLIED : has
-PRODUCT }o--|{ SUPPLIED : is
-SUPPLIED{
+SUPPLIER ||--o{ SUPPLIED_PRODUCT : has
+PRODUCT }o--|{ SUPPLIED_PRODUCT : is
+SUPPLIED_PRODUCT{
     supplierID int FK
     productID int FK
 }
 
-ORDER }|--o{ PRODUCT : includes
-ORDER{
+ORDERS }|--o{ PRODUCT : includes
+ORDERS{
     id int PK
     orderDate date
     expectedDelivery date
@@ -59,8 +59,8 @@ CUSTOMERS{
     name string
     contact int
 }
-PRODUCT }o--|{ SALES : has
-SALES{
+PRODUCT }o--|{ SALE : has
+SALE{
     productID int FK
     productBoxQuantity real
     productBoxPrice real
