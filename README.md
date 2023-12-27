@@ -1,5 +1,12 @@
 ```mermaid
 erDiagram
+PHARMACY }o--|{PRODUCT : has
+PHARMACY{
+    id int PK
+    name string
+    accountNumber int
+    accountBalance int
+}
 PRODUCT {
     id int PK
     tradeName string
@@ -13,7 +20,6 @@ PRODUCT {
 PRODUCT }o--o{ STOCK : in
 STOCK ||--o{ SUPPLIER : has
     STOCK {
-        id int PK
         productID int FK
         supplierID int FK
         stockPacks real
@@ -28,6 +34,8 @@ SUPPLIER{
     id string PK
     name string
     contact int
+    accountNumber int
+    accountBalance int
 
 }
 SUPPLIER ||--o{ SUPPLIED : has
@@ -43,6 +51,7 @@ ORDER{
     orderDate date
     expectedDelivery date
     orderCost real
+    status string
 }
 PRODUCT }|--|{ CUSTOMERS : has
 CUSTOMERS{
@@ -53,19 +62,20 @@ CUSTOMERS{
 PRODUCT }o--|{ SALES : has
 SALES{
     productID int FK
-    productQuantity real
+    productBoxQuantity real
     productBoxPrice real
     totalSale real
+    profitOnSale real
     saleDate date
 }
-PRODUCT}|--|{AVAILABLE_CATAGORY : in
-AVAILABLE_CATAGORY{
+PRODUCT}|--|{AVAILABLE_CATAGORIES : in
+AVAILABLE_CATAGORIES{
     id int PK
     name string
 }
-AVAILABLE_CATAGORY }|--|{CATAGORIZED : by
-CATAGORIZED{
-    id  int PK
+AVAILABLE_CATAGORIES }|--|{CATEGORIZED : by
+CATEGORIZED{
+    CatagoryID  int FK
     productID int FK
 }
 EMPLOYEES }o--o{ PRODUCT : handles
@@ -82,7 +92,7 @@ AUDIT_TRAIL {
     dateOfChange date
     employeeID int FK
     changeType string
-    changedTableID int FK
+    changedTableName int FK
     columnChanged string
     oldValue string
     newValue string
